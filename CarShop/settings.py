@@ -71,8 +71,8 @@ THIRD_PARTY_APPS = [
 ]
 
 MY_APPS = [
-    "Users",
-   
+    "users",
+      
 ]
 
 DRF_SPECTACULAR = ["drf_spectacular"]
