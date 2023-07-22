@@ -6,10 +6,10 @@ class User(AbstractUser):
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=150)
     cpf = models.CharField(max_length=11, unique=True)
-    birthdate = models.DateField()
+    brithdate = models.DateField()
     profile_img = models.CharField(max_length=127)
     is_advertiser = models.BooleanField(default=False)
-    # address_id = models.OneToOneField(on_delete=models.CASCADE, unique=True)
+    address_id = models.IntegerField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

@@ -15,14 +15,14 @@ class UserSerializer(serializers.ModelSerializer):
             "brithdate",
            "profile_img",
            "is_advertiser",
-           "adress_id",
+           "address_id",
            "created_at",
            "updated_at"
         ]
         read_only_fields = ["id", 
                             "is_advertiser", 
-                            "adress_id", 
-                            "created_at", 
+                            "created_at",
+                            "address_id", 
                             "updated_at"
                             ]
         extra_kwargs = {
