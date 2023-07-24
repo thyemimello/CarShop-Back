@@ -12,11 +12,11 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
-import dotenv
 from django.core.management.utils import get_random_secret_key
 import json
 from datetime import timedelta
 import dj_database_url
+import dotenv
 
 dotenv.load_dotenv()
 
@@ -72,6 +72,7 @@ THIRD_PARTY_APPS = [
 
 MY_APPS = [
     "users",
+    "address"
       
 ]
 

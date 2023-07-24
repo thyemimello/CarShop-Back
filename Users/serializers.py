@@ -1,9 +1,11 @@
 from django.core.validators import MinLengthValidator
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
+
 from .models import User
 
 class UserSerializer(serializers.ModelSerializer):
+ 
     class Meta:
         model = User 
         fields = [
@@ -58,3 +60,4 @@ class UserSerializer(serializers.ModelSerializer):
                 setattr(instance, key, value)
         instance.save()
         return instance
+    
