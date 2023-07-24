@@ -1,6 +1,3 @@
-from os import read
-from pyexpat import model
-from attr import fields
 from rest_framework.serializers import ModelSerializer
 from .models import Car
 
@@ -21,3 +18,5 @@ class AdvertusementsSerializer(ModelSerializer):
          "user_id"
       ]
       read_only_fields = ["id", "user_id"]
+
+      

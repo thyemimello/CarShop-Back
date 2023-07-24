@@ -1,3 +1,4 @@
+from comments.models import Comment
 from django.db import models
 from users.models import User
 # Create your models here.
@@ -15,5 +16,5 @@ class Car(models.Model):
     is_avaliable = models.BooleanField(default=True)
 
     user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name="advertisements",null=True)
-
+   
 
