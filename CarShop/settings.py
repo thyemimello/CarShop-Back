@@ -73,8 +73,7 @@ MY_APPS = [
     "users",
     "address",
     "advertisements",
-    "comments"
-      
+    "comments"      
 ]
 
 DRF_SPECTACULAR = ["drf_spectacular"]
