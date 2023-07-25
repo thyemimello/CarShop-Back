@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 from django.core.management.utils import get_random_secret_key
-import json
 from datetime import timedelta
 import dj_database_url
 import dotenv
@@ -42,7 +41,7 @@ if RENDER_EXTERNAL_HOSTNAME:
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
-    # (...)
+    
 ]
 
 # Application definition
