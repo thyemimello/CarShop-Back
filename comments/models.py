@@ -1,6 +1,6 @@
 from django.db import models
 from users.models import User
-from django.contrib.auth import get_user_model
+
 
 # Create your models here.
 class Comment(models.Model):
@@ -8,10 +8,6 @@ class Comment(models.Model):
     comment = models.TextField(max_length=300)
     created_at = models.DateTimeField(auto_now_add=True)
 
-    def get_car_model():
-        from advertisements.models import Car
-        return Car
-
-    car = models.ForeignKey('advertisements.Car', on_delete=models.CASCADE)
+    advertisement = models.ForeignKey('advertisements.Advertisements', on_delete=models.CASCADE, null=True)
     
   

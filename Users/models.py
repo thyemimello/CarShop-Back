@@ -14,6 +14,6 @@ class User(AbstractUser):
 
    
 
-    #   address_id = models.IntegerField(null=True, blank=True)
+
 
     

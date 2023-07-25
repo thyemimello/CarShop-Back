@@ -1,23 +1,28 @@
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.permissions import IsAuthenticated
-from .models import Advertisement
-from .serializers import AdvertisementSerializer
+
+from users.models import User
+from .models import Advertisements
+from .serializers import AdvertusementsSerializer
 
 
 class AdvertisementListCreateView(ListCreateAPIView):
-    queryset = Advertisement.objects.all().order_by("id")
-    serializer_class = AdvertisementSerializer
+    queryset = Advertisements.objects.all().order_by("id")
+    serializer_class = AdvertusementsSerializer
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+        print(serializer.validated_data)
+        print(User)
+        serializer.save(user_id=self.request.user)       
+        
 
 
 class AdvertisementRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
-    queryset = Advertisement.objects.all()
-    serializer_class = AdvertisementSerializer
+    queryset = Advertisements.objects.all()
+    serializer_class = AdvertusementsSerializer
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
 

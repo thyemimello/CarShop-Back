@@ -1,9 +1,9 @@
 from rest_framework.serializers import ModelSerializer
-from .models import Car
+from .models import Advertisements
 
 class AdvertusementsSerializer(ModelSerializer):
    class Meta:
-      model = Car
+      model = Advertisements
       fields = [
          "brand",
          "model",
@@ -19,4 +19,3 @@ class AdvertusementsSerializer(ModelSerializer):
       ]
       read_only_fields = ["id", "user_id"]
 
-      
