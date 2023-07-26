@@ -7,7 +7,7 @@ class ImageSerializer(serializers.ModelSerializer):
         fields = ['id', 'imageUrl', 'type']
 
 class AdvertusementsSerializer(serializers.ModelSerializer):
-    images = ImageSerializer(many=True, read_only=True)
+    images = ImageSerializer(many=True)
 
     class Meta:
         model = Advertisements
