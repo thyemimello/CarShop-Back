@@ -17,5 +17,5 @@ class AdvertusementsSerializer(serializers.ModelSerializer):
         images_data = validated_data.pop('images')
         advertisement = Advertisements.objects.create(**validated_data)
         for image_data in images_data:
-            Image.objects.create(vehicle=advertisement.id, **image_data)
+            Image.objects.create(vehicle=advertisement, **image_data)
         return advertisement
