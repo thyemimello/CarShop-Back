@@ -3,13 +3,13 @@ from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from address.models import Address
 from address.serializers import AddressSerializer
+from django.db import transaction
 
 from .models import User
 
 class UserSerializer(serializers.ModelSerializer):
- 
+    address = AddressSerializer(many=False)
     class Meta:
-        depth = 1
         model = User 
         fields = [
             "id",
@@ -30,7 +30,7 @@ class UserSerializer(serializers.ModelSerializer):
                             "updated_at"
                             ]
         extra_kwargs = {
-            "password": {"write_only": True,
+            "password": {
                          "validators":[MinLengthValidator(8)]},
             "username": {
                 "validators": [
@@ -50,26 +50,27 @@ class UserSerializer(serializers.ModelSerializer):
             },
         }
 
+    def create(self, validated_data):
+        address_data = validated_data.pop('address')
+        with transaction.atomic():
+            user = User.objects.create_user(**validated_data)
+            Address.objects.create(user=user, **address_data)
+        return user
 
-    def create(self, validated_data: dict) -> User:
-       address = validated_data.pop("address")
-       user = User.objects.create_user(**validated_data)
-       Address.objects.create(**address, user=user)
-       return user
-    
-
-
-    def update(self, instance: User, validated_data: dict) -> User:
+    def update(self, instance, validated_data):
+        address_data = validated_data.pop('address', None)
         for key, value in validated_data.items():
             if key == "password":
                 instance.set_password(value)
-          
-            if key == "address":              
-                for Key_address, value_address in value.items():
-                  setattr(instance.address, Key_address, value_address)
-                  instance.save()
             else:
                 setattr(instance, key, value)
         instance.save()
+
+        if address_data:
+            address = instance.address
+            if address:
+                for key, value in address_data.items():
+                    setattr(address, key, value)
+                address.save()
+
         return instance
-    

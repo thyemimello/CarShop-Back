@@ -7,7 +7,7 @@ class AddressSerializer(serializers.ModelSerializer):
         fields = [
             "id",
             "zip_code",
-            "etate",
+            "state",
             "city",
             "street",
             "number",
