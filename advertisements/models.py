@@ -2,19 +2,28 @@ from comments.models import Comment
 from django.db import models
 from users.models import User
 # Create your models here.
+class VehicleType (models.TextChoices):
+    car = "car"
+    motorcycles = "motorcycles"
+    auctions = "auctions"
+
 
 class Advertisements(models.Model):
-    brand = models.CharField(max_length=60)
-    model = models.CharField(max_length=120)
+    announcementType = models.CharField(max_length=255, default='SALE')
+    title = models.TextField(max_length=255, null=True)
     year = models.IntegerField(null=True)
-    fuel = models.CharField(max_length=20)
-    color = models.CharField(max_length=20)
-    quilometers = models.IntegerField(null=True)
-    price = models.IntegerField(null=True)
-    cover_img = models.CharField(max_length=150)
-    description = models.TextField(max_length=250)
-    is_avaliable = models.BooleanField(default=True)
-
+    km = models.IntegerField(default=0)
+    price = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
+    description = models.TextField()
+    vehicleType = models.CharField(choices=VehicleType.choices, default=VehicleType.auctions,max_length=255)
+    published = models.BooleanField(default=False)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name="car", null=True)
+
+class Image(models.Model):
+    vehicle = models.ForeignKey(Advertisements, related_name='images', on_delete=models.CASCADE)
+    imageUrl = models.CharField(max_length=255)
+    type = models.CharField(max_length=255)
+
+   
    
 

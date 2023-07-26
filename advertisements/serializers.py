@@ -1,21 +1,14 @@
-from rest_framework.serializers import ModelSerializer
-from .models import Advertisements
+from rest_framework import serializers
+from .models import Advertisements, Image
 
-class AdvertusementsSerializer(ModelSerializer):
-   class Meta:
-      model = Advertisements
-      fields = [
-         "brand",
-         "model",
-         "year",
-         "fuel",
-         "color",
-         "quilometers",
-         "price",
-         "cover_img",
-         "description",
-         "is_avaliable",
-         "user_id"
-      ]
-      read_only_fields = ["id", "user_id"]
+class ImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Image
+        fields = ['id', 'imageUrl', 'type']
 
+class AdvertusementsSerializer(serializers.ModelSerializer):
+    images = ImageSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Advertisements
+        fields = ['id', 'announcementType', 'title', 'year', 'km', 'price', 'description', 'vehicleType', 'published', 'user_id', 'images']
