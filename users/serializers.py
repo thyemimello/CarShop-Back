@@ -63,7 +63,7 @@ class UserSerializer(serializers.ModelSerializer):
         for key, value in validated_data.items():
             if key == "password":
                 instance.set_password(value)
-            print(validated_data)
+          
             if key == "address":              
                 for Key_address, value_address in value.items():
                   setattr(instance.address, Key_address, value_address)

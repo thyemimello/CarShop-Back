@@ -14,8 +14,6 @@ class AdvertisementListCreateView(ListCreateAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
 
     def perform_create(self, serializer):
-        print(serializer.validated_data)
-        print(User)
         serializer.save(user_id=self.request.user)       
         
 
