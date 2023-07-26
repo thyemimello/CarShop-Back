@@ -77,7 +77,7 @@ MY_APPS = [
     "address",
     "advertisements",
     "comments",
-    'corsheaders'     
+    "corsheaders"     
 ]
 
 DRF_SPECTACULAR = ["drf_spectacular"]
