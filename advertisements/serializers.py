@@ -11,7 +11,7 @@ class AdvertusementsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Advertisements
-        fields = ['announcementType', 'title', 'year', 'km', 'price', 'description', 'vehicleType', 'published', 'user_id', 'images']
+        fields = [ 'id','announcementType', 'title', 'year', 'km', 'price', 'description', 'vehicleType', 'published', 'user_id', 'images']
 
     def create(self, validated_data):
         images_data = validated_data.pop('images')
